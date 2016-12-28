@@ -1,0 +1,10 @@
+package lpgui;
+
+public class Principal2 {
+    public static void main (String[] args){
+        Interface_Grafica2 janela = new Interface_Grafica2();
+        janela.setVisible(true);
+        janela.setSize(300,200);
+        janela.setLocation(300, 300);
+    }
+}

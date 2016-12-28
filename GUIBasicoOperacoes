@@ -1,0 +1,100 @@
+package lpgui;
+
+import javax.swing.*;
+import java.awt.GridLayout;
+
+    public class Interface_Grafica2 extends JFrame{
+        private JLabel lblValor1, lblValor2, lblRes;
+        private JTextField txtValor1, txtValor2, txtRes;
+        private JButton btnSoma, btnSub, btnMult, btnDiv;
+
+        public Interface_Grafica2(){
+            setTitle("Cálculo");
+            lblValor1 = new JLabel("Valor 1: ");
+            lblValor2 = new JLabel("Valor 2: ");
+            txtValor1 = new JTextField("");
+            txtValor2 = new JTextField("");
+            btnSoma = new JButton("Somar");
+            btnSub = new JButton("Subtrair");
+            btnMult = new JButton("Multiplicar");
+            btnDiv = new JButton("Dividir");
+            lblRes = new JLabel("Resultado: ");
+            txtRes = new JTextField("");
+            
+            txtRes.setEditable(false);
+            JPanel painel = new JPanel();
+            painel.setLayout(new GridLayout(5,2,2,5));
+            
+            painel.add(lblValor1);
+            painel.add(txtValor1);
+            painel.add(lblValor2);
+            painel.add(txtValor2);
+            painel.add(lblRes);
+            painel.add(txtRes);
+            painel.add(btnSoma);
+            painel.add(btnSub);
+            painel.add(btnMult);
+            painel.add(btnDiv);
+            
+            setContentPane(painel);
+            
+            pack();
+            
+            btnSoma.addActionListener(new java.awt.event.ActionListener(){
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt){
+                    realizaSoma();
+                }
+            });
+            btnSub.addActionListener(new java.awt.event.ActionListener(){
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt){
+                    realizaSubtracao();
+                }
+            });
+            btnMult.addActionListener(new java.awt.event.ActionListener(){
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt){
+                    realizaMultiplicacao();
+                }
+            });
+            btnDiv.addActionListener(new java.awt.event.ActionListener(){
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt){
+                    realizaDivisao();
+                }
+            });
+            setDefaultCloseOperation(EXIT_ON_CLOSE);
+        }
+        public void realizaSoma(){
+                double n1 = Double.parseDouble(txtValor1.getText());
+                double n2 = Double.parseDouble(txtValor2.getText());
+
+                double res = n1+n2;
+                txtRes.setText(String.valueOf(res));
+            }
+    
+            public void realizaSubtracao(){
+                double n1 = Double.parseDouble(txtValor1.getText());
+                double n2 = Double.parseDouble(txtValor2.getText());
+
+                double res = n1-n2;
+                txtRes.setText(String.valueOf(res));
+            }
+
+            public void realizaMultiplicacao(){
+                double n1 = Double.parseDouble(txtValor1.getText());
+                double n2 = Double.parseDouble(txtValor2.getText());
+
+                double res = n1*n2;
+                txtRes.setText(String.valueOf(res));
+            }
+
+            public void realizaDivisao(){
+                double n1 = Double.parseDouble(txtValor1.getText());
+                double n2 = Double.parseDouble(txtValor2.getText());
+
+                double res = n1/n2;
+                txtRes.setText(String.valueOf(res));
+            }
+    }
