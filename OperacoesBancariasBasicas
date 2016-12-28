@@ -1,0 +1,72 @@
+import javax.swing.*;
+
+public class Exercicio {
+
+    public static void main(String[] args) {
+        double total = 1000;
+        JOptionPane.showMessageDialog(null,
+                                      "Você começará a efetuar operações"
+                                      + " bancárias, com um total de $1000",
+                                      "Operações",
+                                      JOptionPane.PLAIN_MESSAGE);
+        realizaOperacoes(total);
+    }
+        public static void realizaOperacoes(double total){
+            Object[] escolha = {"Sacar", "Depositar", "Saldo", "Sair"};
+            int selecionado;
+            Object escolhido = JOptionPane.showOptionDialog(null,
+                                                            "Escolha uma das opções: ",
+                                                            "Operação",
+                                                            JOptionPane.DEFAULT_OPTION,
+                                                            JOptionPane.INFORMATION_MESSAGE,
+                                                            null,
+                                                            escolha,
+                                                            escolha[0]);
+            selecionado = Integer.parseInt(String.valueOf(escolhido));
+
+            if (selecionado == 0)
+                realizaSaque(total);
+            if (selecionado == 1)
+                realizaDeposito(total);
+            if (selecionado == 2)
+                realizaSaldo(total);
+            if (selecionado == 3)
+                selecionado = -1;
+        }
+    
+        public static void realizaSaque(double tot){
+            String valor = JOptionPane.showInputDialog(null,
+                                                       "Quanto deseja sacar?",
+                                                       "Saque",
+                                                       JOptionPane.PLAIN_MESSAGE);
+            double valor_real = Double.parseDouble(String.valueOf(valor));
+            if (valor_real > tot){
+                JOptionPane.showMessageDialog(null,
+                                              "Você não possui essa quantia!",
+                                              "Operação inválida",
+                                              JOptionPane.PLAIN_MESSAGE);
+            }
+            else
+                tot -= valor_real;
+            
+            realizaSaldo(tot);
+        }
+        public static void realizaDeposito(double tot){
+            String valor = JOptionPane.showInputDialog(null,
+                                                       "Quanto deseja depositar?",
+                                                       "Depósito",
+                                                       JOptionPane.PLAIN_MESSAGE);
+            double valor_real = Double.parseDouble(String.valueOf(valor));
+            tot = tot + valor_real;
+            
+            realizaSaldo(tot);
+        }
+        public static void realizaSaldo(double tot){
+            JOptionPane.showMessageDialog(null,
+                                          "Seu saldo é: " + tot,
+                                          "Saldo",
+                                          JOptionPane.PLAIN_MESSAGE);
+            
+            realizaOperacoes(tot);
+        }
+    }
