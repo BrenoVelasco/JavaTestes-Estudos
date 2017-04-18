@@ -1,0 +1,40 @@
+package prova;
+
+import java.util.Scanner;
+
+public class MainPilha {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		Pilha pilha = new Pilha(10);
+		int array_val[] = new int [10];
+		int count_Menor = 0;
+		int count_Maior = 0;
+		
+		for(int i = 0; i<pilha.Size(); i++)
+		{
+			System.out.println("Digite o " + (i+1) + "º valor: ");
+			array_val[i] = s.nextInt();
+			pilha.Add(array_val[i]);
+			if (array_val[i] < 5)
+				count_Menor++;
+			else
+				count_Maior++;
+		}
+		System.out.println(pilha.toString());
+		
+		Pilha pilhamenor = new Pilha(count_Menor);
+		for (int i = 0; i<array_val.length; i++){
+			if (array_val[i] < 5)
+				pilhamenor.Add(array_val[i]);
+		}
+		Pilha pilhamaior = new Pilha(count_Maior);
+		for (int i = 0; i<array_val.length; i++){
+			if (array_val[i] >= 5)
+				pilhamaior.Add(array_val[i]);
+		}
+		System.out.println("Pilha com elementos maiores ou iguais a 5: " + pilhamaior.toString());
+		System.out.println("Pilha com elementos menores que 5: " + pilhamenor.toString());
+		s.close();
+	}
+}
